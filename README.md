@@ -112,7 +112,7 @@ for item in batch.results:
 ### Everything else for a business
 
 ```python
-invoist.list_documents(status="done", flagged=True, q="Helen", limit=50, offset=0)
+invoist.list_documents(status="done", flagged=True, q="Northwind", limit=50, offset=0)
 invoist.get_document(document_id)               # the document, its extraction, its review items
 invoist.get_document_file(document_id)          # FileDownload: .content, .content_type, .filename
 invoist.list_review_queue(status="pending")     # what Invoist flagged for a person to check
@@ -130,7 +130,7 @@ invoist.delete_webhook_endpoint(endpoint_id)
 ```python
 from datetime import date
 
-invoist.bills.list(paid=False, month=date(2026, 11, 1), sender="Helen", q="", limit=50)
+invoist.bills.list(paid=False, month=date(2026, 11, 1), sender="Northwind", q="", limit=50)
 invoist.bills.get(bill_id)                      # what was read, warnings, letters, who paid
 invoist.bills.get_file(bill_id)                 # FileDownload
 invoist.bills.summary()                         # unpaid, overdue, and what falls due soon
@@ -295,8 +295,7 @@ python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
 ```
 
 `invoist/_generated/models.py` is generated from the API's OpenAPI document
-(`$INVOIST_OPENAPI`, or `../../app/backend/openapi.yaml` in the Invoist
-repository). Don't edit it by hand. `testdata/conformance` holds the test
+(`testdata/openapi.yaml`). Don't edit it by hand. `testdata/conformance` holds the test
 cases every Invoist SDK must pass.
 
 ## Links

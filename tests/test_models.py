@@ -2,7 +2,7 @@
 
 The generated models can't drift (``scripts/generate.py`` rewrites them and CI
 checks for a diff), but the envelopes the spec writes inline are typed by
-hand, so SPEC §2 asks for this test: it fails when the spec gains a property
+hand, so this test checks them: it fails when the spec gains a property
 an envelope lacks.
 """
 

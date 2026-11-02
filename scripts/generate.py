@@ -4,10 +4,9 @@ Run from the SDK folder, after ``pip install -e '.[dev]'``::
 
     python scripts/generate.py
 
-The spec is read from ``$INVOIST_OPENAPI``, defaulting to
-``../../app/backend/openapi.yaml`` (where it lives in the monorepo). The
-output is deterministic, so running this twice leaves no diff; CI relies on
-that to catch models that fell behind the spec.
+The spec is ``testdata/openapi.yaml``, or the file named by
+``$INVOIST_OPENAPI``. The output is deterministic, so running this twice
+leaves no diff; CI relies on that to catch models that fell behind the spec.
 
 One step runs after datamodel-code-generator: every ``Literal[...]`` (an enum
 in the spec) is wrapped as ``Annotated[Literal[...], OPEN_ENUM]``. Type
@@ -27,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / "invoist" / "_generated" / "models.py"
-DEFAULT_SPEC = ROOT / ".." / ".." / "app" / "backend" / "openapi.yaml"
+DEFAULT_SPEC = ROOT / "testdata" / "openapi.yaml"
 
 HEADER = '''\
 # This file is generated from the Invoist OpenAPI document by

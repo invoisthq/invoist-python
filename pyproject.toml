@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "invoist"
-version = "1.0.0"
+version = "1.0.1"
 description = "The official Python library for the Invoist API: read invoices and receipts into structured data, and work with a household's bills."
 readme = "README.md"
 requires-python = ">=3.11"

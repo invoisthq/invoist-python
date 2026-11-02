@@ -17,9 +17,9 @@ API_KEY = "inv_sk_test_123"
 TESTDATA = Path(__file__).resolve().parent.parent / "testdata" / "conformance"
 SPEC = Path(
     os.environ.get("INVOIST_OPENAPI")
-    or Path(__file__).resolve().parent.parent / ".." / ".." / "app" / "backend" / "openapi.yaml"
+    or Path(__file__).resolve().parent.parent / "testdata" / "openapi.yaml"
 )
-"""The API's OpenAPI document; tests that need it skip when it isn't there."""
+"""The API's OpenAPI document."""
 
 
 def conformance(name: str) -> dict[str, Any]:
@@ -146,7 +146,7 @@ def extraction(status: str = "done", **fields: Any) -> dict[str, Any]:
         "document_id": ID,
         "engine": "invoist-extraction-v1",
         "status": status,
-        "vendor_name": "Helen Oy",
+        "vendor_name": "Northwind Oy",
         "total_cents": 4800,
         "currency": "EUR",
         "invoice_date": "2026-10-15",
@@ -167,7 +167,7 @@ def document_detail(status: str | None = "done") -> dict[str, Any]:
 DOCUMENT_LIST_ITEM: dict[str, Any] = {
     **DOCUMENT,
     "status": "done",
-    "vendor_name": "Helen Oy",
+    "vendor_name": "Northwind Oy",
     "total_cents": 4800,
     "pending_review": 0,
     "flagged": False,
@@ -226,7 +226,7 @@ BILL: dict[str, Any] = {
     "kind": None,
     "related": {"document_id": None, "link": ""},
     "letter": None,
-    "logo": "helen.fi",
+    "logo": "northwind.example",
 }
 
 BILL_DETAIL: dict[str, Any] = {
@@ -250,13 +250,13 @@ BILLS_STATS: dict[str, Any] = {
         {"currency": "EUR", "count": 2, "paid_count": 1, "total_cents": 9600, "paid_cents": 4800}
     ],
     "trend": [{"month": "2026-10", "currency": "EUR", "count": 2, "total_cents": 9600}],
-    "top_senders": [{"name": "Helen Oy", "count": 2}],
-    "senders": [{"name": "Helen Oy", "count": 2}],
+    "top_senders": [{"name": "Northwind Oy", "count": 2}],
+    "senders": [{"name": "Northwind Oy", "count": 2}],
 }
 
 HELD_EMAIL: dict[str, Any] = {
     "id": ID,
-    "from_email": "bills@helen.fi",
+    "from_email": "bills@northwind.example",
     "subject": "Your bill",
     "status": "held",
     "created_at": TS,

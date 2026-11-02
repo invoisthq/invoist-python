@@ -5,6 +5,14 @@ All notable changes to this package are documented here. The format follows
 [Semantic Versioning](https://semver.org/). Every Invoist SDK shares one
 version number.
 
+## 1.0.1 - 2026-11-02
+
+- No change to the API or to how the library behaves.
+- The repository now holds its own copy of the API's OpenAPI spec in
+  `testdata/openapi.yaml`. The models are generated from it, and the tests
+  that compare the models with the spec run in this repository too.
+- Test data uses made-up company names.
+
 ## [1.0.0] - 2026-11-01
 
 The first stable release, implementing the cross-language Invoist SDK

@@ -1,4 +1,4 @@
-"""Every method in SPEC §6 sends the right HTTP method and path and returns the right type.
+"""Every API method sends the right HTTP method and path and returns the right type.
 
 Each case runs against both clients; the async one awaits the same call.
 """

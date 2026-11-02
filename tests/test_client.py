@@ -1,4 +1,4 @@
-"""Client behaviour (SPEC §3-§6) against a fake transport: nothing here touches the network."""
+"""Client behaviour against a fake transport: nothing here touches the network."""
 
 from __future__ import annotations
 
@@ -201,8 +201,12 @@ def test_booleans_months_and_omitted_empties() -> None:
         "limit": "10",
         "offset": "0",
     }
-    client.bills.list(paid=True, month="2026-10", sender="Helen Oy")
-    assert dict(api.last.url.params) == {"paid": "true", "month": "2026-10", "sender": "Helen Oy"}
+    client.bills.list(paid=True, month="2026-10", sender="Northwind Oy")
+    assert dict(api.last.url.params) == {
+        "paid": "true",
+        "month": "2026-10",
+        "sender": "Northwind Oy",
+    }
 
 
 def test_no_filters_means_no_query_string() -> None:
@@ -214,14 +218,14 @@ def test_no_filters_means_no_query_string() -> None:
 def test_document_filters() -> None:
     api = FakeAPI(reply(200, {"documents": []}))
     sync_client(api).list_documents(
-        limit=5, offset=10, status="done", flagged=True, q="Helen", category="none"
+        limit=5, offset=10, status="done", flagged=True, q="Northwind", category="none"
     )
     assert dict(api.last.url.params) == {
         "limit": "5",
         "offset": "10",
         "status": "done",
         "flagged": "true",
-        "q": "Helen",
+        "q": "Northwind",
         "category": "none",
     }
 
@@ -237,8 +241,8 @@ def test_summary_and_stats_dates() -> None:
     client = sync_client(api)
     client.bills.summary(today=datetime(2026, 11, 1, 23, 30), days=7)
     assert dict(api.requests[0].url.params) == {"today": "2026-11-01", "days": "7"}
-    client.bills.stats(month=datetime(2026, 10, 31, 12, 0), sender="Helen Oy")
-    assert dict(api.requests[1].url.params) == {"month": "2026-10", "sender": "Helen Oy"}
+    client.bills.stats(month=datetime(2026, 10, 31, 12, 0), sender="Northwind Oy")
+    assert dict(api.requests[1].url.params) == {"month": "2026-10", "sender": "Northwind Oy"}
     client.bills.stats()
     assert api.requests[2].url.query == b""
 
