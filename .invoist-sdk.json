@@ -1,0 +1,23 @@
+{
+  "name": "Python",
+  "mirror": "invoisthq/invoist-python",
+  "registry": "PyPI",
+  "package": "invoist",
+  "tool": "python3",
+  "docker": "python:3.15",
+  "commands": {
+    "setup": "python3 -m venv .venv && .venv/bin/pip install --upgrade pip && .venv/bin/pip install -e '.[dev]'",
+    "generate": ".venv/bin/python scripts/generate.py",
+    "lint": ".venv/bin/ruff check . && .venv/bin/ruff format --check . && .venv/bin/mypy",
+    "test": ".venv/bin/pytest",
+    "build": "rm -rf dist && .venv/bin/python -m build",
+    "publish_dry_run": ".venv/bin/twine check --strict dist/*",
+    "publish": ".venv/bin/twine upload dist/*"
+  },
+  "generated": ["invoist/_generated"],
+  "version_files": [
+    { "path": "pyproject.toml", "pattern": "^version = \"([^\"]+)\"" },
+    { "path": "invoist/_version.py", "pattern": "__version__ = \"([^\"]+)\"" }
+  ],
+  "tag_prefix": "v"
+}
